@@ -1,4 +1,4 @@
-(defproject rtcritical/rtengine "1.0.0"
+(defproject rtcritical/rtengine "1.0.1"
   :description "Minimal clojure service engine that allows deploying single file services at runtime with their own isolated dependencies. Dependencies are downloaded as necessary. Multiple versions of a service can coexist in the system and be individually ran."
   :url "https://github.com/RTCritical/RTEngine"
   :license {:name "MIT"
