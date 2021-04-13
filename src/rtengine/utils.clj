@@ -26,9 +26,7 @@
 
 (defn extract-service-fn-dependencies [service-file]
   (let [service-name (service-file->service-name service-file)
-        service-file-contents (slurp service-file)]
-    (-> (str "\\(defn\\s+" service-name "\\s+(?:\"[^\"]*\")?\\s+\\{(?:.*\\s+|):dependencies\\s+'(.*]])")
-      re-pattern
-      (re-find service-file-contents)
-      second
-      read-string)))
+        service-file-contents (slurp service-file)
+        pattern (re-pattern (str "(?s).*\\(ns\\s+[a-zA-Z0-9.-]*" service-name "\\s+(?:\"[^\"]*\")?\\s+\\{(?:.*\\s+|):dependencies\\s+'(.*].*])"))]
+    (when-let [results (re-find pattern service-file-contents)] 
+      (read-string (second results)))))
